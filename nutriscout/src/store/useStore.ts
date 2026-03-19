@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Restaurant, MenuItem, MealItem, SavedMeal, FilterState, UserGoals, AIRecommendation, PandaPlate, SortOption, GoalPreset, MenuCategory } from '../types';
+import type { Restaurant, MenuItem, MealItem, SavedMeal, FilterState, UserGoals, AIRecommendation, PandaPlate, SortOption, GoalPreset } from '../types';
 import { restaurants } from '../data/cmuRestaurantsSeed';
 import { getMenuForRestaurant } from '../data/menuData';
 
@@ -69,7 +69,7 @@ const defaultFilters: FilterState = {
 };
 
 function applyFiltersAndSort(items: MenuItem[], filters: FilterState): MenuItem[] {
-  let filtered = items.filter(item => {
+  const filtered = items.filter(item => {
     if (item.calories > filters.maxCalories) return false;
     if (item.protein < filters.minProtein) return false;
     if (item.fat > filters.maxFat) return false;

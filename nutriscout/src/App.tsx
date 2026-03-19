@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useStore } from './store/useStore';
 import RestaurantSidebar from './components/RestaurantSidebar';
 import FilterBar from './components/FilterBar';
@@ -15,7 +15,7 @@ export default function App() {
     viewMode, selectedRestaurant,
     showAIDrawer, setShowAIDrawer,
     loadSavedMeals,
-    mealItems,
+    mealItems, selectRestaurant,
   } = useStore();
 
   const [mobileTab, setMobileTab] = useState('restaurants');
@@ -29,11 +29,12 @@ export default function App() {
     return () => window.removeEventListener('resize', check);
   }, [loadSavedMeals]);
 
-  useEffect(() => {
-    if (selectedRestaurant && isMobile) {
+  const handleSelectRestaurant = useCallback((restaurant: Parameters<typeof selectRestaurant>[0]) => {
+    selectRestaurant(restaurant);
+    if (isMobile) {
       setMobileTab('menu');
     }
-  }, [selectedRestaurant, isMobile]);
+  }, [selectRestaurant, isMobile]);
 
   const handleMobileTab = (tab: string) => {
     setMobileTab(tab);
@@ -51,14 +52,12 @@ export default function App() {
       <MealBuilderBar />
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Desktop sidebar always visible, mobile conditionally */}
         {(!isMobile || mobileTab === 'restaurants') && (
           <div className={`${isMobile ? 'w-full' : 'w-72 shrink-0'}`}>
-            <RestaurantSidebar />
+            <RestaurantSidebar onSelect={handleSelectRestaurant} />
           </div>
         )}
 
-        {/* Main content */}
         {(!isMobile || mobileTab === 'menu' || mobileTab === 'meal') && (
           <main className="flex-1 flex flex-col overflow-hidden">
             {mobileTab !== 'meal' && <FilterBar />}
@@ -81,7 +80,6 @@ export default function App() {
         )}
       </div>
 
-      {/* Floating AI Button — desktop only */}
       {!isMobile && selectedRestaurant && !showAIDrawer && (
         <button
           onClick={() => setShowAIDrawer(true)}

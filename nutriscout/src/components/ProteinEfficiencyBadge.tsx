@@ -1,4 +1,4 @@
-import { getEfficiencyColor, getEfficiencyLabel } from '../utils/formatters';
+import { getEfficiencyColor } from '../utils/formatters';
 
 interface Props {
   score: number;

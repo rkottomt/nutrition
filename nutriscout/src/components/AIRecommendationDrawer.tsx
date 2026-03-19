@@ -42,7 +42,7 @@ export default function AIRecommendationDrawer() {
       if (!res.ok) throw new Error('Failed to get recommendations');
       const data = await res.json();
       setAIRecommendations(data.recommendations || []);
-    } catch (e) {
+    } catch {
       setError('AI recommendations require the server to be running with an Anthropic API key. Using fallback analysis.');
       generateFallbackRecs();
     } finally {

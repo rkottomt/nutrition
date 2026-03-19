@@ -14,7 +14,7 @@ app.post('/api/ai/recommend', async (req, res) => {
   if (!apiKey) {
     return res.status(500).json({
       error: 'Anthropic API key not configured',
-      recommendations: generateFallback(items, goals),
+      recommendations: generateFallback(items),
     });
   }
 
@@ -46,7 +46,7 @@ Return ONLY valid JSON: { "recommendations": [{ "item_name": string, "restaurant
     if (!response.ok) {
       const err = await response.text();
       console.error('Anthropic API error:', err);
-      return res.json({ recommendations: generateFallback(items, goals) });
+      return res.json({ recommendations: generateFallback(items) });
     }
 
     const data = await response.json();
@@ -58,10 +58,10 @@ Return ONLY valid JSON: { "recommendations": [{ "item_name": string, "restaurant
       return res.json(parsed);
     }
 
-    return res.json({ recommendations: generateFallback(items, goals) });
+    return res.json({ recommendations: generateFallback(items) });
   } catch (err) {
     console.error('AI recommendation error:', err);
-    return res.json({ recommendations: generateFallback(items, goals) });
+    return res.json({ recommendations: generateFallback(items) });
   }
 });
 
@@ -75,7 +75,7 @@ interface SimpleItem {
   sodium: number;
 }
 
-function generateFallback(items: SimpleItem[], goals: { goal: string; mealCalorieTarget: number }) {
+function generateFallback(items: SimpleItem[]) {
   const sorted = [...items].sort((a, b) => {
     const peA = a.calories > 0 ? (a.protein / a.calories) * 100 : 0;
     const peB = b.calories > 0 ? (b.protein / b.calories) * 100 : 0;

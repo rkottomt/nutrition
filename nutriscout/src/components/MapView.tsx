@@ -26,7 +26,7 @@ function createRestaurantIcon(nutriScore: string) {
 }
 
 export default function MapView() {
-  const { restaurants, selectRestaurant, selectedRestaurant } = useStore();
+  const { restaurants, selectRestaurant } = useStore();
 
   return (
     <div className="flex-1 relative">

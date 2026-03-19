@@ -1,11 +1,24 @@
 import { useStore } from '../store/useStore';
 import { getNutriScoreColor, formatDistance } from '../utils/formatters';
+import type { Restaurant } from '../types';
 
-export default function RestaurantSidebar() {
+interface Props {
+  onSelect?: (restaurant: Restaurant) => void;
+}
+
+export default function RestaurantSidebar({ onSelect }: Props) {
   const { restaurants, selectedRestaurant, selectRestaurant, viewMode, setViewMode } = useStore();
 
+  const handleSelect = (r: Restaurant) => {
+    if (onSelect) {
+      onSelect(r);
+    } else {
+      selectRestaurant(r);
+    }
+  };
+
   return (
-    <aside className="w-72 shrink-0 bg-bg-secondary border-r border-border-subtle flex flex-col h-full overflow-hidden">
+    <aside className="w-full bg-bg-secondary border-r border-border-subtle flex flex-col h-full overflow-hidden">
       <div className="p-4 border-b border-border-subtle">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xl">📍</span>
@@ -43,7 +56,7 @@ export default function RestaurantSidebar() {
           return (
             <button
               key={r.id}
-              onClick={() => selectRestaurant(r)}
+              onClick={() => handleSelect(r)}
               className={`w-full text-left p-3 border-b border-border-subtle transition-colors ${
                 isSelected
                   ? 'bg-accent-green/5 border-l-2 border-l-accent-green'
