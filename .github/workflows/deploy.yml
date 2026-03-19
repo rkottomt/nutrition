@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, cursor/hardcoded-menu-and-builder-e44a]
+    branches: [main]
 
 permissions:
   contents: read
