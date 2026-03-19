@@ -14,8 +14,12 @@ export default function ComparisonTable() {
     { key: 'proteinEfficiency', label: 'PE Score', unit: '', best: 'max' as const },
   ];
 
+  const getVal = (item: typeof comparisonItems[number], key: string): number => {
+    return (item as unknown as Record<string, number>)[key];
+  };
+
   const getBestIndex = (key: string, best: 'min' | 'max') => {
-    const values = comparisonItems.map(item => (item as Record<string, number>)[key] as number);
+    const values = comparisonItems.map(item => getVal(item, key));
     return best === 'min' ? values.indexOf(Math.min(...values)) : values.indexOf(Math.max(...values));
   };
 
@@ -54,7 +58,7 @@ export default function ComparisonTable() {
                   <tr key={m.key} className="border-t border-border-subtle">
                     <td className="text-[11px] text-text-muted font-display py-2 pr-4">{m.label}</td>
                     {comparisonItems.map((item, idx) => {
-                      const val = (item as Record<string, number>)[m.key] as number;
+                      const val = getVal(item, m.key);
                       const isBest = idx === bestIdx;
                       return (
                         <td key={item.id} className="text-center py-2 px-3">
