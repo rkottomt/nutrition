@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+# NutriScout — CMU Fast Food Nutrition Scavenger
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sports-performance-dashboard-style web app that helps Carnegie Mellon University students find nearby fast food restaurants, browse their full nutritional menus, filter by macros, compare items, and build optimized meals.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Restaurant Discovery** — 13 pre-seeded CMU-area fast food chains with NutriScore ratings
+- **Full Nutritional Menus** — Complete hardcoded menus with calories, protein, carbs, fat, sodium
+- **Smart Filters** — Calorie/protein/fat/sodium sliders, category pills, sort options
+- **Quick Presets** — Lean Gains, Light Lunch, Bulk Mode, Heart Healthy one-click filters
+- **Protein Efficiency Score** — (protein / calories) × 100 on every item
+- **Panda Express Plate Builder** — Build bowls, plates, and bigger plates with live macro totals
+- **Meal Builder** — Add items to a running meal tracker with progress rings
+- **Comparison Mode** — Compare 2–4 items side-by-side with highlighted winners
+- **Map View** — Leaflet map with OpenStreetMap dark tiles, restaurant pins colored by NutriScore
+- **AI Recommendations** — Claude-powered analysis of filtered menu items (with fallback)
+- **Mobile Responsive** — Bottom tab navigation on mobile
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite + TypeScript
+- Tailwind CSS v4
+- Zustand (state management)
+- Leaflet (maps)
+- Express (AI API proxy)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd nutriscout
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This starts both the Vite dev server (port 5173) and Express API server (port 3001).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Environment Variables
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Copy `.env.example` to `.env` and add your API keys:
+
 ```
+ANTHROPIC_API_KEY=your_key  # Optional — enables AI recommendations
+```
+
+Without an API key, the AI feature falls back to a protein-efficiency-based analysis.
+
+## Restaurants Included
+
+Chipotle, McDonald's, Subway, Chick-fil-A, Shake Shack, Wingstop, Panda Express, Five Guys, Panera Bread, Qdoba, MOD Pizza, Jersey Mike's, Primanti Bros
+
+All menu items are hardcoded with real nutritional data — no external API calls needed.

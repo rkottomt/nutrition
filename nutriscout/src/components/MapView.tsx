@@ -1,7 +1,7 @@
-import { MapContainer, TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useStore } from '../store/useStore';
 import { getNutriScoreColor } from '../utils/formatters';
-import { Icon, DivIcon } from 'leaflet';
+import { DivIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getMenuForRestaurant } from '../data/menuData';
 
