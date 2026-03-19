@@ -45,6 +45,7 @@ interface AppState {
 
   pandaPlate: PandaPlate;
   setPandaPlateType: (type: PandaPlate['type']) => void;
+  setPandaMaxSides: (max: number) => void;
   addPandaSide: (item: MenuItem) => void;
   removePandaSide: (index: number) => void;
   addPandaEntree: (item: MenuItem) => void;
@@ -247,6 +248,11 @@ export const useStore = create<AppState>((set, get) => ({
   setPandaPlateType: (type) => {
     const config = getPlateConfig(type);
     set({ pandaPlate: { type, sides: [], entrees: [], ...config } });
+  },
+  setPandaMaxSides: (max) => {
+    set(state => ({
+      pandaPlate: { ...state.pandaPlate, maxSides: max, sides: [] },
+    }));
   },
   addPandaSide: (item) => {
     set(state => {
