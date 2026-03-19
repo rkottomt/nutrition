@@ -21,7 +21,8 @@ export const restaurants: Restaurant[] = [
     rating: 4.1,
     cuisineType: 'Mexican',
     distance: parseFloat(calcDistance(40.4384, -79.9559).toFixed(2)),
-    nutriScore: 'A',
+    hasBuilder: true,
+    builderType: 'chipotle',
   },
   {
     id: 'mcdonalds',
@@ -32,7 +33,6 @@ export const restaurants: Restaurant[] = [
     rating: 3.6,
     cuisineType: 'Burgers',
     distance: parseFloat(calcDistance(40.4382, -79.9540).toFixed(2)),
-    nutriScore: 'D',
   },
   {
     id: 'subway',
@@ -43,7 +43,6 @@ export const restaurants: Restaurant[] = [
     rating: 3.8,
     cuisineType: 'Subs',
     distance: parseFloat(calcDistance(40.4445, -79.9499).toFixed(2)),
-    nutriScore: 'B',
   },
   {
     id: 'chickfila',
@@ -54,7 +53,6 @@ export const restaurants: Restaurant[] = [
     rating: 4.4,
     cuisineType: 'Chicken',
     distance: parseFloat(calcDistance(40.4388, -79.9565).toFixed(2)),
-    nutriScore: 'B',
   },
   {
     id: 'shakeshack',
@@ -65,7 +63,6 @@ export const restaurants: Restaurant[] = [
     rating: 4.3,
     cuisineType: 'Burgers',
     distance: parseFloat(calcDistance(40.4461, -79.9502).toFixed(2)),
-    nutriScore: 'C',
   },
   {
     id: 'wingstop',
@@ -76,7 +73,8 @@ export const restaurants: Restaurant[] = [
     rating: 4.0,
     cuisineType: 'Wings',
     distance: parseFloat(calcDistance(40.4386, -79.9560).toFixed(2)),
-    nutriScore: 'B',
+    hasBuilder: true,
+    builderType: 'wingstop',
   },
   {
     id: 'pandaexpress',
@@ -87,8 +85,8 @@ export const restaurants: Restaurant[] = [
     rating: 3.9,
     cuisineType: 'Chinese',
     distance: parseFloat(calcDistance(40.4385, -79.9558).toFixed(2)),
-    nutriScore: 'C',
-    hasPandaBuilder: true,
+    hasBuilder: true,
+    builderType: 'panda',
   },
   {
     id: 'fiveguys',
@@ -99,7 +97,6 @@ export const restaurants: Restaurant[] = [
     rating: 4.2,
     cuisineType: 'Burgers',
     distance: parseFloat(calcDistance(40.4383, -79.9562).toFixed(2)),
-    nutriScore: 'D',
   },
   {
     id: 'panera',
@@ -110,7 +107,6 @@ export const restaurants: Restaurant[] = [
     rating: 4.0,
     cuisineType: 'Bakery/Cafe',
     distance: parseFloat(calcDistance(40.4450, -79.9498).toFixed(2)),
-    nutriScore: 'B',
   },
   {
     id: 'qdoba',
@@ -121,7 +117,6 @@ export const restaurants: Restaurant[] = [
     rating: 3.9,
     cuisineType: 'Mexican',
     distance: parseFloat(calcDistance(40.4447, -79.9500).toFixed(2)),
-    nutriScore: 'B',
   },
   {
     id: 'modpizza',
@@ -132,7 +127,6 @@ export const restaurants: Restaurant[] = [
     rating: 4.1,
     cuisineType: 'Pizza',
     distance: parseFloat(calcDistance(40.4387, -79.9555).toFixed(2)),
-    nutriScore: 'C',
   },
   {
     id: 'jerseymikes',
@@ -143,7 +137,6 @@ export const restaurants: Restaurant[] = [
     rating: 4.2,
     cuisineType: 'Subs',
     distance: parseFloat(calcDistance(40.4389, -79.9550).toFixed(2)),
-    nutriScore: 'C',
   },
   {
     id: 'primantibros',
@@ -154,6 +147,5 @@ export const restaurants: Restaurant[] = [
     rating: 4.0,
     cuisineType: 'Sandwiches',
     distance: parseFloat(calcDistance(40.4378, -79.9520).toFixed(2)),
-    nutriScore: 'D',
   },
 ];

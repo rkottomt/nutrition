@@ -16,11 +16,11 @@ export default function MenuItemCard({ item, isRecommended }: Props) {
     <div
       className={`
         relative rounded-xl p-4 transition-all duration-200 cursor-default
-        border backdrop-blur-sm
+        border shadow-sm
         ${isRecommended
-          ? 'bg-accent-green/5 border-accent-green/30 shadow-[0_0_20px_rgba(0,255,135,0.1)]'
-          : 'bg-bg-card border-border-subtle hover:bg-bg-card-hover hover:border-accent-green/20 hover:-translate-y-0.5'}
-        ${isComparing ? 'ring-2 ring-accent-blue' : ''}
+          ? 'bg-blue-50 border-accent-blue shadow-blue-100'
+          : 'bg-white border-border-subtle hover:bg-bg-card-hover hover:border-accent-baby-dark hover:-translate-y-0.5 hover:shadow-md'}
+        ${isComparing ? 'ring-2 ring-accent-blue-dark' : ''}
       `}
     >
       {isRecommended && (
@@ -42,10 +42,10 @@ export default function MenuItemCard({ item, isRecommended }: Props) {
       <MacroBar protein={item.protein} carbs={item.carbs} fat={item.fat} />
 
       <div className="grid grid-cols-4 gap-2 mt-3">
-        <MacroStat label="Protein" value={item.protein} unit="g" color="#4fc3f7" />
-        <MacroStat label="Carbs" value={item.carbs} unit="g" color="#ffb300" />
-        <MacroStat label="Fat" value={item.fat} unit="g" color="#ff4444" />
-        <MacroStat label="Sodium" value={item.sodium} unit="mg" color="#8888aa" />
+        <MacroStat label="Protein" value={item.protein} unit="g" color="#3b82f6" />
+        <MacroStat label="Carbs" value={item.carbs} unit="g" color="#f59e0b" />
+        <MacroStat label="Fat" value={item.fat} unit="g" color="#ef4444" />
+        <MacroStat label="Sodium" value={item.sodium} unit="mg" color="#64748b" />
       </div>
 
       <div className="flex items-center justify-between mt-3">
@@ -61,15 +61,15 @@ export default function MenuItemCard({ item, isRecommended }: Props) {
             onClick={() => toggleCompare(item)}
             className={`text-[10px] px-2 py-1 rounded-md font-display transition-colors ${
               isComparing
-                ? 'bg-accent-blue/20 text-accent-blue border border-accent-blue/40'
-                : 'bg-white/5 text-text-muted hover:bg-white/10 border border-transparent'
+                ? 'bg-blue-50 text-accent-blue-dark border border-blue-200'
+                : 'bg-gray-50 text-text-muted hover:bg-gray-100 border border-gray-200'
             }`}
           >
             {isComparing ? '✓ Compare' : 'Compare'}
           </button>
           <button
             onClick={() => selectedRestaurant && addToMeal(item, selectedRestaurant.name)}
-            className="text-[10px] px-2 py-1 rounded-md font-display bg-accent-green/10 text-accent-green hover:bg-accent-green/20 transition-colors border border-accent-green/20"
+            className="text-[10px] px-2 py-1 rounded-md font-display bg-blue-50 text-accent-blue-dark hover:bg-blue-100 transition-colors border border-blue-200"
           >
             + Meal
           </button>

@@ -24,21 +24,15 @@ export default function ComparisonTable() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-bg-secondary/95 backdrop-blur-md border-t border-border-subtle animate-slide-up">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-border-subtle shadow-lg animate-slide-up">
       <div className="max-w-5xl mx-auto p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-body font-semibold text-text-primary text-sm flex items-center gap-2">
             📊 Compare Items
             <span className="text-[10px] text-text-muted font-display">{comparisonItems.length} selected</span>
           </h3>
-          <button
-            onClick={clearComparison}
-            className="text-xs text-text-muted hover:text-accent-red font-display transition-colors"
-          >
-            Clear ✕
-          </button>
+          <button onClick={clearComparison} className="text-xs text-text-muted hover:text-accent-red font-display transition-colors">Clear ✕</button>
         </div>
-
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -62,11 +56,7 @@ export default function ComparisonTable() {
                       const isBest = idx === bestIdx;
                       return (
                         <td key={item.id} className="text-center py-2 px-3">
-                          <span
-                            className={`text-xs font-display font-bold inline-block px-2 py-0.5 rounded ${
-                              isBest ? 'bg-accent-green/15 text-accent-green' : 'text-text-primary'
-                            }`}
-                          >
+                          <span className={`text-xs font-display font-bold inline-block px-2 py-0.5 rounded ${isBest ? 'bg-green-50 text-green-600' : 'text-text-primary'}`}>
                             {m.key === 'proteinEfficiency' ? val.toFixed(1) : val}{m.unit && ` ${m.unit}`}
                           </span>
                         </td>
@@ -78,14 +68,9 @@ export default function ComparisonTable() {
             </tbody>
           </table>
         </div>
-
         <div className="flex gap-2 mt-3 justify-end">
           {comparisonItems.map(item => (
-            <button
-              key={item.id}
-              onClick={() => selectedRestaurant && addToMeal(item, selectedRestaurant.name)}
-              className="text-[10px] px-3 py-1.5 rounded-md font-display bg-accent-green/10 text-accent-green hover:bg-accent-green/20 transition-colors border border-accent-green/20"
-            >
+            <button key={item.id} onClick={() => selectedRestaurant && addToMeal(item, selectedRestaurant.name)} className="text-[10px] px-3 py-1.5 rounded-md font-display bg-blue-50 text-accent-blue-dark hover:bg-blue-100 transition-colors border border-blue-200">
               + {item.name.slice(0, 20)} to Meal
             </button>
           ))}

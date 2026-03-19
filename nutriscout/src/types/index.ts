@@ -6,9 +6,9 @@ export interface Restaurant {
   lng: number;
   rating: number;
   cuisineType: string;
-  distance: number; // miles from CMU
-  nutriScore: 'A' | 'B' | 'C' | 'D' | 'F';
-  hasPandaBuilder?: boolean;
+  distance: number;
+  hasBuilder?: boolean;
+  builderType?: 'panda' | 'chipotle' | 'wingstop';
 }
 
 export interface MenuItem {
@@ -29,7 +29,6 @@ export interface MenuItem {
   isGlutenFree?: boolean;
   isSpicy?: boolean;
   proteinEfficiency: number;
-  // Panda Express specific
   pandaCategory?: 'side' | 'entree' | 'appetizer' | 'drink';
 }
 
@@ -90,4 +89,35 @@ export interface PandaPlate {
   entrees: MenuItem[];
   maxSides: number;
   maxEntrees: number;
+}
+
+// Chipotle bowl builder types
+export interface ChipotleIngredient {
+  id: string;
+  name: string;
+  category: 'base' | 'protein' | 'rice' | 'beans' | 'toppings' | 'salsa' | 'extras';
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  sodium: number;
+  isVegetarian?: boolean;
+  isSpicy?: boolean;
+}
+
+// Wingstop builder types
+export interface WingstopFlavor {
+  id: string;
+  name: string;
+  isSpicy?: boolean;
+  caloriesPerClassicWing: number;
+  proteinPerClassicWing: number;
+  carbsPerClassicWing: number;
+  fatPerClassicWing: number;
+  sodiumPerClassicWing: number;
+  caloriesPerBonelessWing: number;
+  proteinPerBonelessWing: number;
+  carbsPerBonelessWing: number;
+  fatPerBonelessWing: number;
+  sodiumPerBonelessWing: number;
 }

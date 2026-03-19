@@ -1,5 +1,5 @@
 import { useStore } from '../store/useStore';
-import { getNutriScoreColor, formatDistance } from '../utils/formatters';
+import { formatDistance } from '../utils/formatters';
 import type { Restaurant } from '../types';
 
 interface Props {
@@ -18,21 +18,21 @@ export default function RestaurantSidebar({ onSelect }: Props) {
   };
 
   return (
-    <aside className="w-full bg-bg-secondary border-r border-border-subtle flex flex-col h-full overflow-hidden">
+    <aside className="w-full bg-white border-r border-border-subtle flex flex-col h-full overflow-hidden">
       <div className="p-4 border-b border-border-subtle">
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-xl">📍</span>
+          <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-lg">📍</div>
           <div>
             <h1 className="font-body font-bold text-text-primary text-lg leading-tight">NutriScout</h1>
             <p className="text-[10px] text-text-muted font-display">CMU Campus • Oakland</p>
           </div>
         </div>
 
-        <div className="flex bg-bg-primary rounded-lg p-0.5">
+        <div className="flex bg-gray-100 rounded-lg p-0.5">
           <button
             onClick={() => setViewMode('list')}
             className={`flex-1 text-xs py-1.5 rounded-md font-display transition-colors ${
-              viewMode === 'list' ? 'bg-bg-card text-text-primary' : 'text-text-muted hover:text-text-primary'
+              viewMode === 'list' ? 'bg-white text-text-primary shadow-sm' : 'text-text-muted hover:text-text-primary'
             }`}
           >
             📋 List
@@ -40,7 +40,7 @@ export default function RestaurantSidebar({ onSelect }: Props) {
           <button
             onClick={() => setViewMode('map')}
             className={`flex-1 text-xs py-1.5 rounded-md font-display transition-colors ${
-              viewMode === 'map' ? 'bg-bg-card text-text-primary' : 'text-text-muted hover:text-text-primary'
+              viewMode === 'map' ? 'bg-white text-text-primary shadow-sm' : 'text-text-muted hover:text-text-primary'
             }`}
           >
             🗺️ Map
@@ -51,7 +51,6 @@ export default function RestaurantSidebar({ onSelect }: Props) {
       <div className="flex-1 overflow-y-auto">
         {restaurants.map(r => {
           const isSelected = selectedRestaurant?.id === r.id;
-          const scoreColor = getNutriScoreColor(r.nutriScore);
 
           return (
             <button
@@ -59,8 +58,8 @@ export default function RestaurantSidebar({ onSelect }: Props) {
               onClick={() => handleSelect(r)}
               className={`w-full text-left p-3 border-b border-border-subtle transition-colors ${
                 isSelected
-                  ? 'bg-accent-green/5 border-l-2 border-l-accent-green'
-                  : 'hover:bg-bg-card border-l-2 border-l-transparent'
+                  ? 'bg-blue-50 border-l-2 border-l-accent-blue-dark'
+                  : 'hover:bg-gray-50 border-l-2 border-l-transparent'
               }`}
             >
               <div className="flex items-start justify-between gap-2">
@@ -73,36 +72,17 @@ export default function RestaurantSidebar({ onSelect }: Props) {
                   </div>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-[11px] text-accent-amber">★ {r.rating}</span>
-                    {r.hasPandaBuilder && (
-                      <span className="text-[9px] bg-accent-amber/10 text-accent-amber px-1.5 py-0.5 rounded font-display">
-                        PLATE BUILDER
+                    {r.hasBuilder && (
+                      <span className="text-[9px] bg-blue-50 text-accent-blue-dark px-1.5 py-0.5 rounded font-display border border-blue-200">
+                        {r.builderType === 'chipotle' ? '🌯 BOWL BUILDER' : r.builderType === 'wingstop' ? '🍗 WING BUILDER' : '🐼 PLATE BUILDER'}
                       </span>
                     )}
                   </div>
-                </div>
-                <div
-                  className="shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-display font-bold"
-                  style={{
-                    background: `${scoreColor}15`,
-                    color: scoreColor,
-                    border: `1px solid ${scoreColor}40`,
-                  }}
-                >
-                  {r.nutriScore}
                 </div>
               </div>
             </button>
           );
         })}
-      </div>
-
-      <div className="p-3 border-t border-border-subtle">
-        <div className="flex gap-2 text-[9px] text-text-muted font-display">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-accent-green inline-block" /> A-B</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-accent-amber inline-block" /> C</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-accent-red inline-block" /> D-F</span>
-          <span className="ml-auto">NutriScore</span>
-        </div>
       </div>
     </aside>
   );

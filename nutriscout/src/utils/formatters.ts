@@ -11,22 +11,11 @@ export function formatDistance(miles: number): string {
   return `${miles.toFixed(1)} mi`;
 }
 
-export function getNutriScoreColor(score: string): string {
-  switch (score) {
-    case 'A': return '#00ff87';
-    case 'B': return '#8aff00';
-    case 'C': return '#ffb300';
-    case 'D': return '#ff6600';
-    case 'F': return '#ff4444';
-    default: return '#8888aa';
-  }
-}
-
 export function getEfficiencyColor(score: number): string {
-  if (score >= 8) return '#00ff87';
-  if (score >= 5) return '#8aff00';
-  if (score >= 3) return '#ffb300';
-  return '#ff4444';
+  if (score >= 8) return '#16a34a';
+  if (score >= 5) return '#3b82f6';
+  if (score >= 3) return '#f59e0b';
+  return '#ef4444';
 }
 
 export function getEfficiencyLabel(score: number): string {
